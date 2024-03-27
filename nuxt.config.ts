@@ -4,5 +4,8 @@ export default defineNuxtConfig({
   modules: ['@nuxt/ui', '@nuxtjs/tailwindcss'],
   tailwindcss: {
     cssPath: '~/assets/css/tailwind.css',
+  },
+  colorMode: {
+    preference: 'light'
   }
 })
