@@ -3,10 +3,10 @@ import type {userDO} from "~/DO/DO";
 
 const colorMode = useColorMode()
 const isDark = computed({
-  get () {
+  get() {
     return colorMode.value === 'dark'
   },
-  set () {
+  set() {
     colorMode.preference = colorMode.value === 'dark' ? 'light' : 'dark'
   }
 })
@@ -25,13 +25,12 @@ const addUser = () => {
 <template>
   <div>
     <div class="h-screen flex flex-col ">
-      <nav class="flex justify-around h-[5%]">
-        <UFormGroup label="User" class="p-4">
-          <UButtonGroup>
-            <UButton @click="addUser">add</UButton>
-            <UInput v-model="nameUser" placeholder="Name" icon="i-heroicons-user"/>
-          </UButtonGroup>
-        </UFormGroup>
+      <nav class="flex justify-around items-center h-[5%] dark:bg-gray-700 bg-amber-400  ">
+        <UButtonGroup>
+          <UButton @click="addUser">add</UButton>
+          <UInput v-model="nameUser" placeholder="Name" icon="i-heroicons-user"/>
+        </UButtonGroup>
+
         <ClientOnly>
           <UButton
               :icon="isDark ? 'i-heroicons-moon-20-solid' : 'i-heroicons-sun-20-solid'"
@@ -41,19 +40,17 @@ const addUser = () => {
               @click="isDark = !isDark"
           />
           <template #fallback>
-            <div class="w-8 h-8" />
+            <div class="w-8 h-8"/>
           </template>
         </ClientOnly>
-        <UFormGroup label="Group" class="p-4">
-          <UButtonGroup>
-            <UButton>add</UButton>
-            <UInput placeholder="Name" icon="i-heroicons-user-group"/>
-          </UButtonGroup>
-        </UFormGroup>
+
+        <UButtonGroup>
+          <UButton>add</UButton>
+          <UInput placeholder="Name" icon="i-heroicons-user-group"/>
+        </UButtonGroup>
       </nav>
       `
-      <UDivider/>
-      <div class="flex h-[95%] ">
+      <div class="flex h-[90%] ">
         <span class="h-full overflow-scroll w-1/2">
         <UTable v-model="usersSelected" :rows="users"/>
         </span>
