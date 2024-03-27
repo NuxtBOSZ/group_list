@@ -14,9 +14,8 @@ const addUser = () => {
 
 <template>
   <div>
-    <UCard class="h-screen">
-      <template #header>
-        <nav class="flex justify-between">
+    <div class="h-screen flex flex-col">
+        <nav class="flex justify-between h-1/6">
           <UFormGroup label="User">
             <UButtonGroup>
               <UButton @click="addUser">add</UButton>
@@ -30,9 +29,8 @@ const addUser = () => {
             </UButtonGroup>
           </UFormGroup>
         </nav>
-      </template>
 
-      <div class="flex justify-between h-full">
+      <div class="flex justify-between h-5/6 ">
         <div class="h-full overflow-scroll">
         <UTable v-model="usersSelected" :rows="users" />
         </div>
@@ -44,6 +42,6 @@ const addUser = () => {
 <!--      <template #footer>-->
 <!--        <Placeholder class="h-8" />-->
 <!--      </template>-->
-    </UCard>
+    </div>
   </div>
 </template>
