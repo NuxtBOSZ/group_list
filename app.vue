@@ -1,5 +1,5 @@
 <template>
   <div>
-    <NuxtWelcome />
+    <UButton>ta</UButton>
   </div>
 </template>
