@@ -50,7 +50,7 @@ const addUser = () => {
         </UButtonGroup>
       </nav>
       `
-      <div class="flex h-[90%] ">
+      <div class="flex h-[95%] ">
         <span class="h-full overflow-scroll w-1/2">
         <UTable v-model="usersSelected" :rows="users"/>
         </span>
