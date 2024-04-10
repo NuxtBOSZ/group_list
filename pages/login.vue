@@ -1,26 +1,32 @@
 <script setup lang="ts">
+import {useTokenStore} from "~/stores/token";
+
+const tokenStore = useTokenStore();
+const {fetchToken} = tokenStore;
+
+const IName = ref<string>("");
+const IPassword = ref<string>("");
+
 const items = [{
-  key: 'account',
-  label: 'Account',
-  description: 'Make changes to your account here. Click save when you\'re done.'
+  key: 'login',
+  label: 'Login',
+  description: 'Si tú quieres bailar, jugar, pintar, cantar Tú puedes venir a mi casa'
 }, {
-  key: 'password',
-  label: 'Password',
-  description: 'Change your password here. After saving, you\'ll be logged out.'
+  key: 'register',
+  label: 'Register',
+  description: 'La idea es compartir, te vas a divertir Si quieres venir a mi casa'
 }]
 
-const accountForm = reactive({ name: 'Benjamin', username: 'benjamincanac' })
-const passwordForm = reactive({ currentPassword: '', newPassword: '' })
+// const { data, error, execute, pending, status } = await useLazyAsyncData('token',() => fetchToken(IName.value,IPassword.value),{
+//   immediate: false
+// })
 
-function onSubmit (form) {
-  console.log('Submitted form:', form)
-}
 </script>
 
 <template>
   <UTabs :items="items" class="w-full">
     <template #item="{ item }">
-      <UCard @submit.prevent="() => onSubmit(item.key === 'account' ? accountForm : passwordForm)">
+      <UCard>
         <template #header>
           <p class="text-base font-semibold leading-6 text-gray-900 dark:text-white">
             {{ item.label }}
@@ -30,26 +36,26 @@ function onSubmit (form) {
           </p>
         </template>
 
-        <div v-if="item.key === 'account'" class="space-y-3">
-          <UFormGroup label="Name" name="name">
-            <UInput v-model="accountForm.name" />
+        <div v-if="item.key === 'login'" class="space-y-3">
+          <UFormGroup label="Username" name="username" required>
+            <UInput v-model="IName" required/>
           </UFormGroup>
-          <UFormGroup label="Username" name="username">
-            <UInput v-model="accountForm.username" />
+          <UFormGroup label="Password" name="password" required>
+            <UInput v-model="IPassword" type="password" required/>
           </UFormGroup>
         </div>
-        <div v-else-if="item.key === 'password'" class="space-y-3">
-          <UFormGroup label="Current Password" name="current" required>
-            <UInput v-model="passwordForm.currentPassword" type="password" required />
+        <div v-else-if="item.key === 'register'" class="space-y-3">
+          <UFormGroup label="Username" name="username" required>
+            <UInput v-model="IName" required/>
           </UFormGroup>
-          <UFormGroup label="New Password" name="new" required>
-            <UInput v-model="passwordForm.newPassword" type="password" required />
+          <UFormGroup label="Password" name="password" required>
+            <UInput v-model="IPassword" type="password" required/>
           </UFormGroup>
         </div>
 
         <template #footer>
-          <UButton type="submit" color="black">
-            Save {{ item.key === 'account' ? 'account' : 'password' }}
+          <UButton color="black" @click="fetchToken(IName,IPassword)">
+            {{item.label}}
           </UButton>
         </template>
       </UCard>

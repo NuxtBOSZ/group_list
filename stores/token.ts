@@ -1,39 +1,41 @@
-import { defineStore } from 'pinia';
-export const useTodosStore = defineStore('token', {
+import {defineStore} from 'pinia';
+import {parseJwt} from '~/DO/fun'
+export const useTokenStore = defineStore('token', {
 
     state: () => ({
-        urlServer:"http://0.0.0.0:2050/",
+        urlServer: "http://0.0.0.0:2050/",
         token: "",
         name: "",
-        nameToken: "",
-        passwordToken: "",
+        exp: -1
     }),
     actions: {
-        async fetchToken() {
-            const { data }: any = await useFetch(this.urlServer+"user/login",{
+        async fetchToken(name: string, password: string) {
+            // TODO opsłurzyć błedy
+            const {data}: any = await useFetch(this.urlServer + "user/login", {
                 method: 'POST',
                 body: {
-                    name: this.nameToken,
-                    password: this.passwordToken
+                    name: name,
+                    password: password
                 }
             });
             if (data.value) {
                 this.token = data.value;
+                const parseJwt1 = parseJwt(data.value);
+                this.name = parseJwt1.name;
+                this.exp = parseJwt1.exp;
             }
         },
-        async fetchCheckToken() {
-            const { data }: any = await useFetch(this.urlServer+"user/auth",{
+        async fetchRegister(name: string, password: string) {
+            // TODO opsłurzyć błedy
+            const {data}: any = await useFetch(this.urlServer + "user/register", {
                 method: 'POST',
                 body: {
-                    name: this.nameToken,
-                    password: this.passwordToken
-                },
-                headers: {
-                    Authorization: this.token,
+                    name: name,
+                    password: password
                 }
             });
             if (data.value) {
-                this.name = data.value;
+
             }
         },
     }
