@@ -2,7 +2,7 @@
 import {useTokenStore} from "~/stores/token";
 
 const tokenStore = useTokenStore();
-const {fetchToken} = tokenStore;
+const {fetchToken , fetchRegister} = tokenStore;
 
 const IName = ref<string>("");
 const IPassword = ref<string>("");
@@ -10,11 +10,13 @@ const IPassword = ref<string>("");
 const items = [{
   key: 'login',
   label: 'Login',
-  description: 'Si tú quieres bailar, jugar, pintar, cantar Tú puedes venir a mi casa'
+  description: 'Si tú quieres bailar, jugar, pintar, cantar Tú puedes venir a mi casa',
+  fun: ()=>fetchToken(IName.value,IPassword.value),
 }, {
   key: 'register',
   label: 'Register',
-  description: 'La idea es compartir, te vas a divertir Si quieres venir a mi casa'
+  description: 'La idea es compartir, te vas a divertir Si quieres venir a mi casa',
+  fun: ()=>fetchRegister(IName.value,IPassword.value),
 }]
 
 // const { data, error, execute, pending, status } = await useLazyAsyncData('token',() => fetchToken(IName.value,IPassword.value),{
@@ -54,7 +56,7 @@ const items = [{
         </div>
 
         <template #footer>
-          <UButton color="black" @click="fetchToken(IName,IPassword)">
+          <UButton color="black" @click="item.fun()">
             {{item.label}}
           </UButton>
         </template>

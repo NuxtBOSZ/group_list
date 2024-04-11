@@ -26,6 +26,8 @@ const isDark = computed({
   }
 })
 
+
+
 </script>
 
 <template>
@@ -56,5 +58,7 @@ const isDark = computed({
     <NuxtLayout>
       <NuxtPage/>
     </NuxtLayout>
+
+    <UNotifications />
   </div>
 </template>
