@@ -28,7 +28,7 @@ const items = [{
 <template>
   <UTabs :items="items" class="w-full">
     <template #item="{ item }">
-      <UCard>
+      <UCard @submit.prevent="item.fun()">
         <template #header>
           <p class="text-base font-semibold leading-6 text-gray-900 dark:text-white">
             {{ item.label }}
@@ -56,7 +56,7 @@ const items = [{
         </div>
 
         <template #footer>
-          <UButton color="black" @click="item.fun()">
+          <UButton color="black" type="submit" >
             {{item.label}}
           </UButton>
         </template>

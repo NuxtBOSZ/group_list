@@ -14,6 +14,10 @@ const links = [{
   label: 'Login',
   icon: 'i-heroicons-user-circle',
   to: 'login'
+}, {
+  label: 'Users',
+  icon: 'i-heroicons-user-circle',
+  to: 'users'
 }]
 
 const colorMode = useColorMode()
@@ -35,7 +39,7 @@ const isDark = computed({
     <nav class="flex justify-between p-4">
       <UBreadcrumb :links="links" :ui="{ ol: 'gap-x-3', li: 'gap-x-3' }">
         <template #divider>
-          <span class="w-8 h-1 rounded-full bg-gray-300 dark:bg-gray-700"/>
+          <span class="w-2 h-1 rounded-full bg-gray-300 dark:bg-gray-700"/>
         </template>
       </UBreadcrumb>
       <span class="flex items-center">

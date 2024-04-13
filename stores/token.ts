@@ -6,6 +6,7 @@ export const useTokenStore = defineStore('token', {
 
     state: () => ({
         urlServer: "http://0.0.0.0:2050/",
+        // urlServer: "http://192.168.56.54:2050/",
         token: "",
         name: "",
         exp: -1
