@@ -35,8 +35,8 @@ const isDark = computed({
 </script>
 
 <template>
-  <div class="h-screen">
-    <nav class="flex justify-between p-4">
+  <div class="h-screen flex flex-col">
+    <nav class="h-[5%] flex justify-between p-4">
       <UBreadcrumb :links="links" :ui="{ ol: 'gap-x-3', li: 'gap-x-3' }">
         <template #divider>
           <span class="w-2 h-1 rounded-full bg-gray-300 dark:bg-gray-700"/>
@@ -60,9 +60,10 @@ const isDark = computed({
     </nav>
 
     <NuxtLayout>
-      <NuxtPage/>
+      <NuxtPage class="h-[95%]"/>
     </NuxtLayout>
 
+    <UModals />
     <UNotifications />
   </div>
 </template>

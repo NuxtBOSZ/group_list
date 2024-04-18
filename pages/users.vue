@@ -1,28 +1,16 @@
 <script setup lang="ts">
-import {useTokenStore} from "~/stores/token";
-import {storeToRefs} from "pinia";
 
-const tokenStore = useTokenStore();
-const {token,urlServer} = storeToRefs(tokenStore);
+import UserList from "~/component/UserList.vue";
 
-const par = ref("")
-
-const {data , error , execute}: any = await useFetch(urlServer.value+"user/all?UserSortBy=NAME&PageSize=1&PageNumber=1",{
-  headers:{
-    Authorization: token.value,
-  }
-})
-
+const selected = ref<any[]>([]);
 </script>
 
+
 <template>
-  <UInput v-model="par"></UInput>
-{{data}};
-  <UButton @click="execute">send</UButton>
-  <p>UserSortBy</p>
-  <p>SortOrder</p>
-  <p>PageSize</p>
-  <p>PageNumber</p>
+  <div class="flex">
+  <UserList class="w-1/2 h-full" v-model:selected="selected"></UserList>
+    <div></div>
+  </div>
 </template>
 
 <style scoped>
