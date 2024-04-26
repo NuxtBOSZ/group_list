@@ -36,12 +36,8 @@ const isDark = computed({
 
 <template>
   <div class="h-screen flex flex-col">
-    <nav class="h-[5%] flex justify-between p-4">
-      <UBreadcrumb :links="links" :ui="{ ol: 'gap-x-3', li: 'gap-x-3' }">
-        <template #divider>
-          <span class="w-2 h-1 rounded-full bg-gray-300 dark:bg-gray-700"/>
-        </template>
-      </UBreadcrumb>
+    <nav class="h-[5%] flex justify-between items-center p-4">
+      <UHorizontalNavigation :links="links" class="border-b border-gray-200 dark:border-gray-800"/>
       <span class="flex items-center">
         <ClientOnly>
           <UButton

@@ -4,6 +4,7 @@ import {storeToRefs} from "pinia";
 const userStore = useUserStore();
 const {pageCount,pagination} = storeToRefs(userStore);
 
+const emit = defineEmits(['clear','select'])
 </script>
 
 <template>
@@ -25,6 +26,14 @@ const {pageCount,pagination} = storeToRefs(userStore);
         <UToggle v-model="pagination"/>
       </span>
       </div>
+      <template #footer>
+        <div class="flex justify-between items-center p-2">
+          <UButtonGroup>
+            <UButton @click="emit('clear')" variant="soft">Clear Selection</UButton>
+            <UButton @click="emit('select')" variant="soft">Select All</UButton>
+          </UButtonGroup>
+        </div>
+      </template>
     </UCard>
   </UModal>
 </template>

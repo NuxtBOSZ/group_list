@@ -4,14 +4,15 @@ import {timeout, warningColor, warningIcon} from "~/DO/var/toast";
 
 export const useUserStore = defineStore('user', {
 
-    state: (): {users : {name:string}[],count:number,pageCount:number,pagination:boolean} => ({
+    state: (): {clipboard : {id:number,name:string}[],users : {id:number,name:string}[],count:number,pageCount:number,pagination:boolean} => ({
+        clipboard: [],
         users: [],
         count: 0,
         pageCount: 10,
         pagination: true,
     }),
     actions:{
-        async fetchUsers(SearchByName:string|null = null,UserSortBy:"name" | "id" | null = null,SortOrder: "ASC" | "DES" | null = null,PageSize: number | null = null, PageNumber: number | null = null){
+        async fetchUsers(SearchByName:string|null = null,UserSortBy:"name" | "id" | null = null,SortOrder: "desc" | "asc" | null = null,PageSize: number | null = null, PageNumber: number | null = null){
             const tokenStore = useTokenStore();
             const {token,urlServer} = storeToRefs(tokenStore);
             const toast = useToast()
@@ -25,7 +26,7 @@ export const useUserStore = defineStore('user', {
                     return "&"
                 }
             }
-
+            // TODO to trzeba zmienić tak jek jest w dokumentacji
             const {data , error}: any = await useFetch(
                 urlServer.value+"user/all" +
                 (SearchByName!=null ? (Q()+"SearchByName="+SearchByName) : "") +
